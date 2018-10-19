@@ -1,0 +1,14 @@
+﻿{
+  "DefaultEmitPath": "C:\\MvcAngular",
+  "Commands": [
+    {
+      "Command": "works",
+      "Source": "C:\\VS Projects\\Your Solution\\Your.Project",
+      "Project": "Your.Project.csproj",
+      "Target": ".\\emit",
+      "Assemblies": [
+        "Your.Project.AssemblyNameToEmit"
+      ]
+    }
+  ]
+}
