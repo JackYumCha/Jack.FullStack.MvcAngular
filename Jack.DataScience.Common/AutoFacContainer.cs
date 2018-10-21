@@ -17,9 +17,9 @@ namespace Jack.DataScience.Common
 
             ContainerBuilder = new ContainerBuilder();
 
-            RegisterOptions<SerilogOptions>();
-            RegisterOptions<SqlServerOptions>();
-            RegisterOptions<JwtSecretOptions>(); 
+            //RegisterOptions<SerilogOptions>();
+            //RegisterOptions<SqlServerOptions>();
+            //RegisterOptions<JwtSecretOptions>(); 
         }
 
         public IConfiguration Configuration { get; set; }

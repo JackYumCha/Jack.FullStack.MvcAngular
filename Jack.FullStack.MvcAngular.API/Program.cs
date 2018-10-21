@@ -19,7 +19,7 @@ namespace Jack.FullStack.MvcAngular.API
                 var isDevelopment = (Debugger.IsAttached || args.Contains("--development"));
                 var builder = CreateWebHostBuilder(
                     args.Where(arg => arg != "--console" && arg != "--development").ToArray(),
-                    isDevelopment ? "https://*:9188;http://*:9186" : "https://*:443;http://*:80");
+                    isDevelopment ? "https://*:9188;http://*:9186" : "https://*:443;http://*:80"); // 
 
                 // to run this console app as a windows service:
 

@@ -33,7 +33,7 @@ namespace Jack.FullStack.MvcAngular.API
 
         public const string ArangoConnectionId = "_system";
 
-        public const string SwaggerApiName = "medigraph-api";
+        public const string SwaggerApiName = "mvcangular-api";
 
         public Startup(IConfiguration configuration)
         {
@@ -52,7 +52,7 @@ namespace Jack.FullStack.MvcAngular.API
 
             ContainerBuilder builder = autoFacContainer.ContainerBuilder;
 
-            builder.RegisterType<RoleJwtEncoder>();
+            // builder.RegisterType<RoleJwtEncoder>();
 
             services.AddCors(options =>
                     options.AddPolicy(
@@ -79,8 +79,8 @@ namespace Jack.FullStack.MvcAngular.API
                     new Info
                     {
                         Version = "1",
-                        Title = "MediGraph API Server",
-                        Description = "MediGraph API",
+                        Title = "MvcAngular",
+                        Description = "MvcAngular API",
                         TermsOfService = "N/A"
                     })
                 );
@@ -114,7 +114,7 @@ namespace Jack.FullStack.MvcAngular.API
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseSwagger();
-            app.UseSwaggerUI(setup => setup.SwaggerEndpoint($"/swagger/{SwaggerApiName}/swagger.json", "MediGraph API"));
+            app.UseSwaggerUI(setup => setup.SwaggerEndpoint($"/swagger/{SwaggerApiName}/swagger.json", "MvcAngular API"));
             app.UseMvc(routes =>
             {
                 routes.MapSpaFallbackRoute("spaFallback", new { controller = "Home", action = "Spa" });

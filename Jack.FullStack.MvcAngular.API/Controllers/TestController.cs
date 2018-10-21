@@ -8,17 +8,22 @@ using Jack.FullStack.MvcAngular.API.Dtos;
 
 namespace Jack.FullStack.MvcAngular.API.Controllers
 {
-    [Angular]
+    [Angular, Route("[controller]/[action]")]
     public class TestController: Controller
     {
-        [HttpGet]
-        public IntValue Add(int a, int b)
+        [HttpPost]
+        public IntValue Add([FromBody] AddDto add)
         {
             return new IntValue()
             {
-                Value = a + b
+                Value = add.a + add.b
             };
         }
 
+        [HttpGet]
+        public int Add2(int a, int b)
+        {
+            return a + b;
+        }
     }
 }

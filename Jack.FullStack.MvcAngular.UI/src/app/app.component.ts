@@ -19,11 +19,15 @@ export class AppComponent {
   c: number = 0;
 
   calculate(){
-    this.testService.Add(this.a, this.b).subscribe(this.processResponse);
+    this.testService.Add2(this.a, this.b).subscribe(this.processResponse2);
   }
 
   processResponse = (value: IntValue) => {
     this.c = value.Value;
+  }
+
+  processResponse2 = (value: number) => {
+    this.c = value;
   }
 
 }

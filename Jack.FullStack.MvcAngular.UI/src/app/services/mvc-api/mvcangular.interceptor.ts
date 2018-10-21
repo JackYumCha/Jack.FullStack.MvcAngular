@@ -18,8 +18,9 @@ export class MvcAngularInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
         if(req.url.includes(MEDIGRAPH_SERVER)){
             req = req.clone({
-                url: req.url.replace(MEDIGRAPH_SERVER, environment.apiUrl),
-                withCredentials: true
+                url: req.url.replace(MEDIGRAPH_SERVER, environment.apiUrl)
+                //,
+                //withCredentials: true
             });
         }
         return next.handle(req).pipe(catchError((err: any, httpError) => {
