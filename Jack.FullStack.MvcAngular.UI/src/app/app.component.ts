@@ -1,3 +1,4 @@
+import { IntValue } from './services/mvc-api/datatypes/Jack.FullStack.MvcAngular.API.Dtos.IntValue';
 import { TestService } from './services/mvc-api/services/Jack.FullStack.MvcAngular.API.Controllers.Test.Service';
 import { Component } from '@angular/core';
 
@@ -15,8 +16,14 @@ export class AppComponent {
 
   a: number = 0;
   b: number = 0;
+  c: number = 0;
 
   calculate(){
-
+    this.testService.Add(this.a, this.b).subscribe(this.processResponse);
   }
+
+  processResponse = (value: IntValue) => {
+    this.c = value.Value;
+  }
+
 }
