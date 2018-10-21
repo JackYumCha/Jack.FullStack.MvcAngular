@@ -1,6 +1,7 @@
 import { IntValue } from './services/mvc-api/datatypes/Jack.FullStack.MvcAngular.API.Dtos.IntValue';
 import { TestService } from './services/mvc-api/services/Jack.FullStack.MvcAngular.API.Controllers.Test.Service';
 import { Component } from '@angular/core';
+import { merge, forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,10 @@ export class AppComponent {
   c: number = 0;
 
   calculate(){
-    this.testService.Add2(this.a, this.b).subscribe(this.processResponse2);
+    forkJoin(
+    this.testService.Add2(this.a, this.b),
+    this.testService.Add({a: this.a, b: this.b})
+    ).subscribe(this.processResponseForkJoin);
   }
 
   processResponse = (value: IntValue) => {
@@ -30,4 +34,18 @@ export class AppComponent {
     this.c = value;
   }
 
+  processResponseForkJoin = (v1: [number, IntValue]) => {
+    this.c = v1[0];
+    console.log(v1[1]);
+  }
+
+  processResponseMerge = (v1: number|IntValue) => {
+    if(typeof v1 == 'number'){
+      this.c = v1;
+      console.log('number: ', v1);
+    }
+    else{
+      console.log('object: ', v1);
+    }
+  }
 }
