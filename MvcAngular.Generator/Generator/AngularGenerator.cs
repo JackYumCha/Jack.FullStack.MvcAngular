@@ -829,6 +829,11 @@ namespace MvcAngular.Generator
             {
                 baseroute = String.Format(route.Template.Replace("[controller]", "{0}"), baseroute);
             }
+            else
+            {
+                // this is important in avoiding mistakes. otherwise, the stack could have mistake, which is hard to found out.
+                throw new Exception($"No RouteAttribute was found for type {service.FullName}. Please add 'Route(\"[controller]/[action]\")' to {service.Name}.");
+            }
 
             // create string builder for building code
             var stb = new StringBuilder();
