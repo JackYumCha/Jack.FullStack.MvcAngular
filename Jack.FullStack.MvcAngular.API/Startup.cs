@@ -20,6 +20,7 @@ using Autofac.Extensions.DependencyInjection;
 using Jack.FullStack.MvcAngular.API.Authorization;
 using Jack.FullStack.MvcAngular.API.ErrorHandling;
 using Jack.FullStack.MvcAngular.API.Dtos;
+using Jack.DataScience.Data.Arango;
 
 namespace Jack.FullStack.MvcAngular.API
 {
@@ -52,7 +53,12 @@ namespace Jack.FullStack.MvcAngular.API
 
             ContainerBuilder builder = autoFacContainer.ContainerBuilder;
 
-            // builder.RegisterType<RoleJwtEncoder>();
+            autoFacContainer.RegisterOptions<ArangoOptions>();
+            autoFacContainer.RegisterOptions<JwtSecretOptions>();
+            autoFacContainer.RegisterOptions<AuthOptions>();
+            builder.RegisterModule<ArangoModule>();
+
+            builder.RegisterType<RoleJwtEncoder>();
 
             services.AddCors(options =>
                     options.AddPolicy(
@@ -72,6 +78,11 @@ namespace Jack.FullStack.MvcAngular.API
                 json.SerializerSettings.ContractResolver = new DefaultContractResolver();
                 json.SerializerSettings.Converters.Add(new StringEnumConverter());
             });
+
+            services.AddSession(options =>
+           {
+               options.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.None;
+           });
 
             services.AddSwaggerGen(
                 setup =>

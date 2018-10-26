@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jack.FullStack.MvcAngular.API", "Jack.FullStack.MvcAngular.API\Jack.FullStack.MvcAngular.API.csproj", "{759158D0-CD81-40D8-A317-E28BFB082130}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jack.FullStack.MvcAngular.API", "Jack.FullStack.MvcAngular.API\Jack.FullStack.MvcAngular.API.csproj", "{759158D0-CD81-40D8-A317-E28BFB082130}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvcAngular.Generator", "MvcAngular.Generator\MvcAngular.Generator.csproj", "{0527152D-FF30-45D8-8AFD-1F588B88D542}"
 EndProject
@@ -12,6 +12,14 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jack.DataScience.Logging.Serilog", "Jack.DataScience.Logging.Serilog\Jack.DataScience.Logging.Serilog.csproj", "{632A1CCF-C0F4-446D-B0DD-2B219988F861}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArangoDB.Client.Jack", "ArangoDB.Client\ArangoDB.Client.Jack.csproj", "{32469719-2902-485B-A234-27CC2472B9AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jack.FullStack.MvcAngular.BusinessLogic", "Jack.FullStack.MvcAngular.BusinessLogic\Jack.FullStack.MvcAngular.BusinessLogic.csproj", "{A8684A62-FFBA-457F-BE11-F5E25307242C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jack.FullStack.MvcAngular.DataAccess", "Jack.FullStack.MvcAngular.DataAccess\Jack.FullStack.MvcAngular.DataAccess.csproj", "{FB4924F0-8CDF-40EB-AF8F-97DC4264C047}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jack.FullStack.MvcAngular.DataEntities", "Jack.FullStack.MvcAngular.DataEntities\Jack.FullStack.MvcAngular.DataEntities.csproj", "{DB913A5D-9118-4C54-8FE3-5C804363B573}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jack.DataScience.Data.Arango", "Jack.DataScience.Data.Arango\Jack.DataScience.Data.Arango.csproj", "{CAEE99C3-D5C6-4051-B118-A98199FC2FDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +47,22 @@ Global
 		{32469719-2902-485B-A234-27CC2472B9AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32469719-2902-485B-A234-27CC2472B9AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32469719-2902-485B-A234-27CC2472B9AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8684A62-FFBA-457F-BE11-F5E25307242C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8684A62-FFBA-457F-BE11-F5E25307242C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8684A62-FFBA-457F-BE11-F5E25307242C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8684A62-FFBA-457F-BE11-F5E25307242C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB4924F0-8CDF-40EB-AF8F-97DC4264C047}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB4924F0-8CDF-40EB-AF8F-97DC4264C047}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB4924F0-8CDF-40EB-AF8F-97DC4264C047}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB4924F0-8CDF-40EB-AF8F-97DC4264C047}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB913A5D-9118-4C54-8FE3-5C804363B573}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB913A5D-9118-4C54-8FE3-5C804363B573}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB913A5D-9118-4C54-8FE3-5C804363B573}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB913A5D-9118-4C54-8FE3-5C804363B573}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAEE99C3-D5C6-4051-B118-A98199FC2FDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAEE99C3-D5C6-4051-B118-A98199FC2FDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAEE99C3-D5C6-4051-B118-A98199FC2FDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAEE99C3-D5C6-4051-B118-A98199FC2FDA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,6 +7,7 @@ using JWT.Algorithms;
 using JWT.Serializers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Jack.DataScience.Common;
 
 
 namespace Jack.FullStack.MvcAngular.API.Authorization

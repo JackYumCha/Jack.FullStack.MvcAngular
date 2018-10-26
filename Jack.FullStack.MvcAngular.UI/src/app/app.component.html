@@ -8,6 +8,7 @@
     <div user>
       <a *ngIf="!hasLogin">Login</a>
       <a *ngIf="hasLogin">{{username}}</a>
+      <button *ngIf="hasLogin" (click)="logoff()">Logoff</button>
     </div> 
   </div>
 </head>

@@ -7,7 +7,7 @@ import { environment } from '../../../environments/environment';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
-const MEDIGRAPH_SERVER = '<Jack.FullStack.MvcAngular.API>';
+const MVCANGULAR_SERVER = '<Jack.FullStack.MvcAngular.API>';
 
 @Injectable()
 export class MvcAngularInterceptor implements HttpInterceptor {
@@ -16,11 +16,10 @@ export class MvcAngularInterceptor implements HttpInterceptor {
 
     /** this will add the authorization to the header */
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
-        if(req.url.includes(MEDIGRAPH_SERVER)){
+        if(req.url.includes(MVCANGULAR_SERVER)){
             req = req.clone({
-                url: req.url.replace(MEDIGRAPH_SERVER, environment.apiUrl)
-                //,
-                //withCredentials: true
+                url: req.url.replace(MVCANGULAR_SERVER, environment.apiUrl),
+                withCredentials: true
             });
         }
         return next.handle(req).pipe(catchError((err: any, httpError) => {

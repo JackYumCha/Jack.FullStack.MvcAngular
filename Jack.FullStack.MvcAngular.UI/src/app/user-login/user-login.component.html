@@ -1,5 +1,14 @@
 <section login>
   <div row>
+    <h3>User Login</h3>
+  </div>
+  <div row>
+      <label>User Role</label>
+      <select [(ngModel)]="role">
+        <option *ngFor="let role of roles">{{role}}</option>
+      </select>
+    </div>
+  <div row>
     <label>Username</label>
     <input type="text" [(ngModel)]="username" />
   </div>
@@ -8,11 +17,9 @@
     <input type="password" [(ngModel)]="password" />
   </div>
   <div row>
-    <div>
-      <button routerLink="/register">Register</button>
-    </div>
-    <div>
-      <button>Login</button>
-    </div>
+      <div>
+          <button routerLink="/register">Register</button>
+          <button (click)="login()">Login</button>
+      </div>
   </div>
 </section>

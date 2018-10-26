@@ -10,6 +10,8 @@ using Newtonsoft.Json.Linq;
 using Jack.FullStack.MvcAngular.API.Dtos;
 using Jack.FullStack.MvcAngular.API.Authorization;
 using Jack.DataScience.Common;
+using Jack.DataScience.Data.Arango;
+using ArangoDB.Client;
 
 namespace Jack.FullStack.MvcAngular.API.Controllers
 {
@@ -19,8 +21,12 @@ namespace Jack.FullStack.MvcAngular.API.Controllers
 
         private readonly RoleJwtEncoder jwtEncoder;
         private readonly CookieOptions loginCookieOptions;
+        private readonly IArangoDatabase arangoDatabase;
 
-        public UserController(RoleJwtEncoder jwtEncoder, AuthOptions mediGraphOptions)
+        public UserController(
+            RoleJwtEncoder jwtEncoder, 
+            AuthOptions mediGraphOptions,
+            ArangoConnection arangoConnection)
         {
             this.jwtEncoder = jwtEncoder;
             loginCookieOptions = new CookieOptions()
@@ -28,24 +34,31 @@ namespace Jack.FullStack.MvcAngular.API.Controllers
                 Expires = DateTime.Now.AddDays(mediGraphOptions.TokenExpiringDays),
                 HttpOnly = true
             };
+            arangoDatabase = arangoConnection.CreateClient();
         }
 
         [HttpPost]
         public async Task<LoginToken> Login([FromBody] LoginRequest loginRequest)
         {
+            var found = await arangoDatabase.Query<User>()
+                .Filter(u =>
+                u._key == loginRequest.Id
+                && u.PasswordHash == loginRequest.PasswordHash
+                && u.Role == loginRequest.UserType).ToListAsync();
+
             // check login via data base
-            //var user = logins.FirstOrDefault();
-            //if (user != null)
-            //{
-            //    var token = new LoginToken()
-            //    {
-            //        Key = user._key,
-            //        Name = $"{user.Surname} {user.GivenName}",
-            //        Role = loginRequest.UserType,
-            //        ExpiringDate = DateTime.Now.AddDays(15)
-            //    };
-            //    return Response.WriteJWTCookie(token);
-            //}
+            var user = found.FirstOrDefault();
+            if (user != null)
+            {
+                var token = new LoginToken()
+                {
+                    Key = user._key,
+                    Name = $"{user.Surname} {user.GivenName}",
+                    Role = loginRequest.UserType,
+                    ExpiringDate = DateTime.Now.AddDays(15)
+                };
+                return Response.WriteJWTCookie(token);
+            }
 
             return new LoginToken();
         }
@@ -82,12 +95,34 @@ namespace Jack.FullStack.MvcAngular.API.Controllers
         {
             // create user in the database
 
+            User user = new User()
+            {
+                _key = registerRequest.Id,
+                PasswordHash = registerRequest.PasswordHash,
+                DateOfBirth = registerRequest.DateOfBirth,
+                GivenName = registerRequest.GivenName,
+                Surname = registerRequest.Surname
+            };
+
+            var foundExisting = await arangoDatabase.Query<User>().Filter(u => u._key == registerRequest.Id).ToListAsync();
+
+            if(foundExisting.Count > 0)
+            {
+                return new UserRegisterResponse()
+                {
+                    LoginResult = null,
+                    Success = false
+                };
+            }
+ 
+            arangoDatabase.Upsert(user);
+
             var token = new LoginToken()
             {
-                //Key = user._key,
-                //Name = $"{user.Surname} {user.GivenName}",
-                //Role = registerRequest.UserType,
-                //ExpiringDate = DateTime.Now.AddDays(15)
+                Key = user._id,
+                Name = $"{user.Surname} {user.GivenName}",
+                Role = registerRequest.UserType,
+                ExpiringDate = DateTime.Now.AddDays(15)
             };
             token = Response.WriteJWTCookie(token);
 

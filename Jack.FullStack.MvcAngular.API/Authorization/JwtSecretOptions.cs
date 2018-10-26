@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace Jack.FullStack.MvcAngular.API.Authorization
 {
-    public class JwtSecretOptions
-    {
-        public string Secret { get; set; }
-    }
+    //public class JwtSecretOptions
+    //{
+    //    public string Secret { get; set; }
+    //}
 }

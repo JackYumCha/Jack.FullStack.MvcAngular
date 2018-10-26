@@ -1,3 +1,39 @@
-<p>
-  user-register works!
-</p>
+<section login>
+    <div row>
+        <h3>User Registration</h3>
+    </div>
+    <div row>
+      <label>User Role</label>
+      <select [(ngModel)]="role">
+        <option *ngFor="let role of roles">{{role}}</option>
+      </select>
+    </div>
+  <div row>
+    <label>Username</label>
+    <input type="text" [(ngModel)]="username" />
+  </div>
+  <div row>
+    <label>Password</label>
+    <input type="password" [(ngModel)]="password" />
+  </div>
+
+
+  <div row>
+      <label>Given Name</label>
+      <input type="text" [(ngModel)]="givenName" />
+    </div>
+    <div row>
+      <label>Surname</label>
+      <input type="text" [(ngModel)]="surname" />
+    </div>
+
+  <div row>
+    <label>Date of Birth</label>
+    <input type="date" [(ngModel)]="dateOfBirth"/>
+  </div>
+  <div row>
+    <div>
+      <button (click)="registerUser()">Register</button>
+    </div>
+  </div>
+</section>
