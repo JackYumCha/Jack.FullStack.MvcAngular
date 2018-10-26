@@ -1,3 +1,4 @@
+import { LoginSingleton } from './auth/login-singleton.service';
 import { IntValue } from './services/mvc-api/datatypes/Jack.FullStack.MvcAngular.API.Dtos.IntValue';
 import { TestService } from './services/mvc-api/services/Jack.FullStack.MvcAngular.API.Controllers.Test.Service';
 import { Component } from '@angular/core';
@@ -9,43 +10,18 @@ import { merge, forkJoin } from 'rxjs';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'UI';
+  
+ 
 
-  public constructor(public testService: TestService){
+  public constructor(public login: LoginSingleton){
 
   }
 
-  a: number = 0;
-  b: number = 0;
-  c: number = 0;
-
-  calculate(){
-    forkJoin(
-    this.testService.Add2(this.a, this.b),
-    this.testService.Add({a: this.a, b: this.b})
-    ).subscribe(this.processResponseForkJoin);
+  get hasLogin(): boolean {
+    return this.login && this.login.token && this.login.token.Key && this.login.token.Name && true;
   }
-
-  processResponse = (value: IntValue) => {
-    this.c = value.Value;
+  get username(): string{
+    return this.login.token.Name;
   }
-
-  processResponse2 = (value: number) => {
-    this.c = value;
-  }
-
-  processResponseForkJoin = (v1: [number, IntValue]) => {
-    this.c = v1[0];
-    console.log(v1[1]);
-  }
-
-  processResponseMerge = (v1: number|IntValue) => {
-    if(typeof v1 == 'number'){
-      this.c = v1;
-      console.log('number: ', v1);
-    }
-    else{
-      console.log('object: ', v1);
-    }
-  }
+ 
 }
