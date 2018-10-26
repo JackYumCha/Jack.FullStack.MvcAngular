@@ -5,13 +5,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MvcAngular;
 using Jack.FullStack.MvcAngular.API.Dtos;
+using Jack.FullStack.MvcAngular.API.Authorization;
 
 namespace Jack.FullStack.MvcAngular.API.Controllers
 {
     [Angular, Route("[controller]/[action]")]
     public class TestController: Controller
     {
-        [HttpPost]
+        [HttpPost, Role(RoleEnum.Admin)]
         public IntValue Add([FromBody] AddDto add)
         {
             return new IntValue()
