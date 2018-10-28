@@ -1,3 +1,5 @@
+import { ContactJackComponent } from './contact-jack/contact-jack.component';
+import { ContactsComponent } from './contacts/contacts.component';
 import { AdminViewComponent } from './admin-view/admin-view.component';
 import { UserRouterGuard, AdminRouterGuard } from './auth/auth-guard';
 import { UserViewComponent } from './user-view/user-view.component';
@@ -6,6 +8,7 @@ import { AppComponent } from './app.component';
 import { Routes, RouterModule } from "@angular/router";
 import { UserLoginComponent } from './user-login/user-login.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
+import { ProductsComponent } from './products/products.component';
 
 const appRoutes: Routes = [
     {
@@ -32,8 +35,19 @@ const appRoutes: Routes = [
         component: UserRegisterComponent
     },
     {
-        path: '**',
-        component: DashboardViewComponent
+        path: 'products',
+        component: ProductsComponent
+    },
+    {
+        path: 'contacts',
+        component: ContactsComponent,
+        children: [
+            {
+                path: 'jack',
+                component: ContactJackComponent
+            }
+
+        ]
     }
 ];
 

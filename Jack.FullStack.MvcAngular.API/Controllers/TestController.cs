@@ -12,7 +12,7 @@ namespace Jack.FullStack.MvcAngular.API.Controllers
     [Angular, Route("[controller]/[action]")]
     public class TestController: Controller
     {
-        [HttpPost, Role(RoleEnum.Admin)]
+        [HttpPost, Role(RoleEnum.Admin, RoleEnum.User)]
         public IntValue Add([FromBody] AddDto add)
         {
             return new IntValue()

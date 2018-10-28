@@ -15,6 +15,9 @@ import { UserViewComponent } from './user-view/user-view.component';
 import { AdminViewComponent } from './admin-view/admin-view.component';
 import { DashboardViewComponent } from './dashboard-view/dashboard-view.component';
 import { UserRouterGuard, AdminRouterGuard } from './auth/auth-guard';
+import { ProductsComponent } from './products/products.component';
+import { ContactsComponent } from './contacts/contacts.component';
+import { ContactJackComponent } from './contact-jack/contact-jack.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { UserRouterGuard, AdminRouterGuard } from './auth/auth-guard';
     UserRegisterComponent,
     UserViewComponent,
     AdminViewComponent,
-    DashboardViewComponent
+    DashboardViewComponent,
+    ProductsComponent,
+    ContactsComponent,
+    ContactJackComponent
   ],
   imports: [
     AppRouterModule,
