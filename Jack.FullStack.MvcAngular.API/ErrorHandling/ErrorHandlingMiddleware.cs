@@ -6,19 +6,22 @@ using Microsoft.AspNetCore.Http;
 using System.Net;
 using Serilog;
 using Newtonsoft.Json;
+using Serilog;
+using Autofac;
 
 namespace Jack.FullStack.MvcAngular.API.ErrorHandling
 {
     public class ErrorHandlingMiddleware
     {
         private readonly RequestDelegate next;
+        // private readonly ILogger logger;
 
         public ErrorHandlingMiddleware(RequestDelegate next)
         {
             this.next = next;
         }
 
-        public async Task Invoke(HttpContext context, ILogger logger) // You can inject other autofac dependencies here 
+        public async Task Invoke(HttpContext context) // You can inject other autofac dependencies here 
         {
             try
             {
@@ -26,7 +29,7 @@ namespace Jack.FullStack.MvcAngular.API.ErrorHandling
             }
             catch (Exception ex)
             {
-
+                var logger = Startup.ApplicationContainer.Resolve<ILogger>();
                 await HandleExceptionAsync(context, logger, ex);
             }
         }

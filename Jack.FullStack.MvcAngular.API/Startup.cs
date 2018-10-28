@@ -56,6 +56,8 @@ namespace Jack.FullStack.MvcAngular.API
             autoFacContainer.RegisterOptions<ArangoOptions>();
             autoFacContainer.RegisterOptions<JwtSecretOptions>();
             autoFacContainer.RegisterOptions<AuthOptions>();
+            autoFacContainer.RegisterOptions<SerilogOptions>();
+
             builder.RegisterModule<ArangoModule>();
 
             builder.RegisterType<RoleJwtEncoder>();
